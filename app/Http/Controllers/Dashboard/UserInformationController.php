@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,14 +15,15 @@ class UserInformationController extends Controller
     {
         $user = User::find(Auth::user()->id);
 
-        return view('dashboard.user.index', compact('user'));
+        return view('dashboard.user.index', [
+          'user' => Auth::user(),
+          'blogs' => Blog::all()
+        ]);
     }
 
     public function edit()
     {
-        $user = User::find(Auth::user()->id);
-
-        return view('dashboard.user.edit', ['user' => $user]);
+        return view('dashboard.user.edit', ['user' => Auth::user()]);
     }
 
     public function update(Request $request, $userID)
@@ -43,7 +45,7 @@ class UserInformationController extends Controller
             Storage::disk('public')->delete($oldImage);
         }
 
-        return redirect()->route('user.information.edit');
+        return redirect()->route('user.information.index');
     }
 
     private function rules()

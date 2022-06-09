@@ -1,16 +1,11 @@
-@extends('layouts.main-page')
-
-@section('content')
-
-
-<div class="text-capitalize text-center">
-  <h2>{{ $title }}</h2>
-</div>
+@props([
+  'blogs' => [],
 
 
-<!-- blog-contents -->
+  
+])
 
-@foreach($blogs as $blog)
+
 <article class="blog-item">
   <div class="row">
     <div class="col-md-3">
@@ -20,8 +15,8 @@
     </div>
     <div class="col-md-9">
       <p>
-        @if($blog->tags)
-        @foreach($blog->tags as $tag)
+        @if($blogs)
+        @foreach($tags as $tag)
         <a href="#">{{ $tag }}</a> ,
         @endforeach
         @endif
@@ -55,44 +50,3 @@
     </div>
   </div>
 </article>
-@endforeach
-<!-- /.blog-item -->
-
-{{ $blogs->links() }}
-@endsection
-
-@push('script')
-<script src="https://kit.fontawesome.com/aca1f5583c.js" crossorigin="anonymous"></script>
-@endpush
-
-@push('style')
-
-<style>
-.thumbnails-icons {
-  margin-top: 20px;
-  display: inline-block;
-  width: 60%;
-}
-
-.thumbnails-icons i {
-  margin: 0px 5px;
-}
-
-.writer-figure {
-  width: 40%;
-  margin-top: 20px;
-}
-
-.writer-figure img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
-
-.writer-figure a {
-  display: inline-block;
-  padding: 5px;
-}
-</style>
-
-@endpush

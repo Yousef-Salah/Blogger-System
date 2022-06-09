@@ -64,5 +64,14 @@ class User extends Authenticatable
         return $status;
     }
 
+    public function getlastPostDateAttribute()        /////// to be completed 
+    {
+        $lastPost = Blog::select('created_at')->first();
+        if($lastPost)
+        { 
+            return now()->diffForHumans($lastPost->created_at);
+        }
+        return 'no Posts';
+    }
 
 }

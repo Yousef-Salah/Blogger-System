@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedInteger('total_likes')->default(0);
             $table->unsignedInteger('total_dislikes')->default(0);
             $table->json('tags')->nullable();
-            $table->string('image')->nullable(0);
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
