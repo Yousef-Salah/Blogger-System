@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users','id');
             $table->string('title');
-            $table->longText('text');
-            $table->unsignedInteger('total_comments')->default(0);
-            $table->unsignedInteger('total_likes')->default(0);
-            $table->unsignedInteger('total_dislikes')->default(0);
-            $table->json('tags')->nullable();
-            $table->string('image')->nullable();
+            $table->string('description', 250)->nullable();
+            $table->longText('content');
+            $table->integer('reading_duration')->default(5);
+            $table->foreignId('user_id')->constrained('users','id');
+            $table->string('poaster')->nullable();
+            $table->dateTime('publish_at');
+            $table->boolean('is_public')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //(new UserSeeder)->run();
-        User::factory(100)->create();
-        Blog::factory(100)->create();
-        Comment::factory(100)->create();
-        Interaction::factory(100)->create();
-        User::factory(100)->create();
+        // User::factory(100)->create();
+        // Blog::factory(100)->create();
+        // Comment::factory(100)->create();
+        // Interaction::factory(100)->create();
+        // User::factory(100)->create();
         
     }
 }
