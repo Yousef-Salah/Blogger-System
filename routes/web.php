@@ -47,6 +47,8 @@ Route::middleware(['auth'])->group(function(){
     Route::put('dahsboard/{id}/restore', [DashboardController::class, 'restore'])->name('dashboard.restore');
 
     Route::resource('dashboard', DashboardController::class);
+
+    Route::post('/dashboard/add-image-to-blog', [DashboardController::class, 'uploadBlogImage'])->name('dashboard.upload-blog-image');
 });
 
 // Route::get('/dashboard', [DashboardController::class, 'index'])

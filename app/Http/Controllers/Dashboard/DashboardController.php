@@ -166,4 +166,23 @@ class DashboardController extends Controller
             'is_public' => 'nullable|boolean'
         ];
     }
+
+    public function uploadBlogImage(Request $request)
+    {
+        $image_path = '';
+
+        if($request->hasFile('image')) {
+            $poaster = $request->file('image');
+            if($poaster->isValid()){
+                $image_path = $poaster->store('blogs_poasters',['disk' => 'public']);
+            } else {
+                throw ValidationException::withMessages(['poaster' => 'Image Was Corrupted!!']);
+            }
+        }
+
+        return response()->json([
+            'url' => asset($image_path)
+        ]);
+    }
+
 }

@@ -20,7 +20,7 @@
     <header class="header" id="header">
 
         <nav class="navbar container">
-            <a href="./index.html">
+            <a href="{{ route('blogs.index') }}">
                 <h2 class="logo">NewsFlash</h2>
             </a>
 
