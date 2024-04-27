@@ -47,20 +47,18 @@ class DashboardController extends Controller
     {
         $request->validate($this->rules());
 
-        //dd($request->all());
         $data = $request->all();
 
-
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            if($image->isValid()){
-                $data['image'] = $image->store('blogs_images',['disk' => 'public']);
+        if($request->hasFile('poaster')){
+            $poaster = $request->file('poaster');
+            if($poaster->isValid()){
+                $data['poaster'] = $poaster->store('blogs_poasters',['disk' => 'public']);
             } else {
-                throw ValidationException::withMessages(['image' => 'Image Was Corrupted!!']);
+                throw ValidationException::withMessages(['poaster' => 'Image Was Corrupted!!']);
             }
         }
 
-        $data['user_id'] = Auth::user()->id;
+        $data['user_id'] = Auth::id();
 
         Blog::create($data);
 
@@ -104,20 +102,20 @@ class DashboardController extends Controller
         $blog = Blog::findOrFail($id);
         $data = $request->all();
         
-        $oldImage = $blog->image;
+        $oldPoaster = $blog->poaster;
 
-        if($request->hasFile('image')) {
-            if($request->file('image')->isValid()){
-              $data['image'] = $request->file('image')->store('blogs_images', ['disk' => 'public']);
+        if($request->hasFile('poaster')) {
+            if($request->file('poaster')->isValid()){
+              $data['poaster'] = $request->file('poaster')->store('blogs_poasters', ['disk' => 'public']);
            } else {
-               throw  ValidationException::withMessages(['image' => 'image was corrupted']);
+               throw  ValidationException::withMessages(['poaster' => 'image was corrupted']);
            }
-        } else { $data['image'] = $blog->image; }
+        } else { $data['poaster'] = $blog->poaster; }
 
         $blog->update($data);
 
-        if($oldImage and $oldImage != $data['image']){
-            Storage::disk('public')->delete($oldImage);
+        if($oldPoaster and $oldPoaster != $data['poaster']){
+            Storage::disk('public')->delete($oldPoaster);
         }
 
         return redirect()->route('dashboard.index');
@@ -135,7 +133,7 @@ class DashboardController extends Controller
     
         if($blog->deleted_at){
             $blog->forceDelete();
-            Storage::disk('public')->delete($blog->image);
+            Storage::disk('public')->delete($blog->poaster);
         } else {
             $blog->delete();
         }
@@ -160,9 +158,12 @@ class DashboardController extends Controller
     private function rules()
     {
         return [
-            'title' => "required|string|min:5|max:255",
-            'text' => "required|string|min:5|max:65535",
-            'image' => "nullable|image",
+            'title' => 'required|string|min:5|max:250',
+            'description' => 'nullable|string|max:250',
+            'content' => 'required|string',
+            'reading_duration' => 'required|integer|min:1',
+            'poaster' => 'nullable|image',
+            'is_public' => 'nullable|boolean'
         ];
     }
 }

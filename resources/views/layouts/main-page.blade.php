@@ -13,7 +13,7 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="{{ asset('/assets/css/main.css') }}">
 
-    @stack('styles')
+    @stack('style')
 </head>
 <body>
     <!-- Header -->
@@ -46,6 +46,9 @@
                     </li>
                     @auth
                         <li class="list-item screen-lg-hidden">
+                            <a onclick="document.getElementById('logout_form').submit()" href="#" class="list-link">Log out</a>
+                        </li>
+                        <li class="list-item screen-lg-hidden">
                             <a href="{{ route('dashboard.index') }}" class="list-link">Dashboard</a>
                         </li>
                     @endauth
@@ -76,6 +79,10 @@
                     <i class="ri-close-line close-menu-icon"></i>
                 </button>
                 @auth
+                    <form action="{{ route('logout') }}" method="post" id="logout_form">
+                        @csrf
+                    </form>
+                    <a href="#" onclick="document.getElementById('logout_form').submit()" class="list-link screen-sm-hidden">Log out</a>
                     <a href="{{ route('dashboard.index') }}" class="btn sign-up-btn fancy-border screen-sm-hidden">
                         <span>Dashboard</span>
                     </a>
@@ -115,11 +122,129 @@
 
     @yield('content')
 
+    <!-- Newsletter -->
+    <section class="newsletter section">
+
+        <div class="container">
+
+            <h2 class="title section-title" data-name="Newsletter">Newsletter</h2>
+
+            <div class="form-container-inner">
+                <h6 class="title newsletter-title">Subscribe to NewsFlash</h6>
+                <p class="newsletter-description">Lorem ipsum dolor sit amet consectetur adipisicing quaerat dignissimos.</p>
+
+                <form action="" class="form">
+                    <input class="form-input" type="text" placeholder="Enter your email address">
+                    <button class="btn form-btn" type="submit">
+                        <i class="ri-mail-send-line"></i>
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer section">
+        <div class="footer-container container d-grid">
+            
+            <div class="company-data">
+                <a href="./index.html">
+                    <h2 class="logo">NewsFlash</h2>
+                </a>
+                <p class="company-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, iure. Harum, animi dolores, nam, ad magni expedita.</p>
+                <ul class="list social-media">
+                    <li class="list-item">
+                        <a href="#" class="list-link"><i class="ri-instagram-line"></i></a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link"><i class="ri-facebook-circle-line"></i></a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link"><i class="ri-twitter-line"></i></a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link"><i class="ri-pinterest-line"></i></a>
+                    </li>
+                </ul>
+                <span class="copyright-notice">&copy;2021 NewsFlash. All rights reserved.</span>
+            </div>
+
+            <div>
+                <h6 class="title footer-title">Categories</h6>
+                <ul class="footer-list list">
+                    <li class="list-item">
+                        <a href="#" class="list-link">Travel</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Food</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Technology</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Health</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Nature</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Fitness</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h6 class="title footer-title">Useful links</h6>
+                <ul class="footer-list list">
+                    <li class="list-item">
+                        <a href="#" class="list-link">Home</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Elements</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Tags</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Authors</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Membership</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h6 class="title footer-title">Company</h6>
+                <ul class="footer-list list">
+                    <li class="list-item">
+                        <a href="#" class="list-link">Contact us</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">F.A.Q</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Careers</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Authors</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="list-link">Memberships</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
     <!-- Swiper.js -->
     <script src="{{ asset('/assets/js/swiper-bundle.min.js') }}"></script>
     <!-- Custom script -->
     <script src="{{ asset('/assets/js/main.js') }}"></script>
 
-    @stack('scripts')
+    @stack('script')
 </body>
 </html>

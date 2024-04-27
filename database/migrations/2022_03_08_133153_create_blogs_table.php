@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description', 250)->nullable();
+            $table->string('description')->nullable();
             $table->longText('content');
             $table->integer('reading_duration')->default(5);
             $table->foreignId('user_id')->constrained('users','id');
             $table->string('poaster')->nullable();
-            $table->dateTime('publish_at');
+            $table->dateTime('publish_at')->useCurrent();
             $table->boolean('is_public')->default(false);
             $table->timestamps();
             $table->softDeletes();

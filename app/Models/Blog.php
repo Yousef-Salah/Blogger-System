@@ -17,14 +17,14 @@ class Blog extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id',
         'title',
-        'text',
-        'total_commetns',
-        'total_likes',
-        'total_dislikes',
-        'tags',
-        'image'
+        'description',
+        'content',
+        'reading_duration',
+        'user_id',
+        'poaster',
+        'publish_at',
+        'is_public'
     ];
 
     public static function booted()

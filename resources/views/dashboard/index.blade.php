@@ -47,7 +47,7 @@
         <thead>
             <th>#</th>
             <th>Blog Title</th>
-            <th>Blog Text</th>
+            <th>Blog Description</th>
             <th>Blog Tags</th>
             <th>Likes</th>
             <th>DisLikes</th>
@@ -60,7 +60,7 @@
             <tr>
                 <td>{{ $loop->index + 1 }}</td>
                 <td>{{ $blog->title }}</td>
-                <td>{{ $blog->summary }}</td>
+                <td>{{ $blog->description }}</td>
                 <td>soon B Tags</td>
                 <td>{{ $blog->total_likes }}</td>
                 <td>{{ $blog->total_dislikes }}</td>

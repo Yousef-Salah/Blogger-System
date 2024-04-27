@@ -21,7 +21,7 @@
 <div class="form-group form-group-lg">
     <label class="col-sm-2 control-label" for="formGroupInputLarge">Blog Content</label>
     <div class="col-sm-10">
-        <textarea rows="5" name="content" class="form-control" placeholder="Enter Your Text Here...">{{ old('content', $blog->content) }}</textarea>
+        <textarea id="editor" rows="5" name="content" class="form-control" placeholder="Enter Your Text Here...">{{ old('content', $blog->content) }}</textarea>
         @error('content')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -92,5 +92,17 @@
             var image = document.getElementById('image_viewer');
             image.src = URL.createObjectURL(event.target.files[0]);
         };
+    </script>
+@endpush
+
+@push('script')
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
+
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
     </script>
 @endpush
